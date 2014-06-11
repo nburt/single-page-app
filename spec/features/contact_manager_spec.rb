@@ -42,4 +42,13 @@ feature 'The one-page contact manager app', js: true do
     end
   end
 
+  scenario 'a user can cancel editing a person' do
+    visit '/'
+    within '.person:first-child' do
+      click_on 'Edit'
+    end
+    click_on 'Cancel'
+    expect(page).to have_content 'Joe Example'
+  end
+
 end

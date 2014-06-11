@@ -34,7 +34,14 @@ window.ContactManagerApp = {
       event.preventDefault();
       var editForm = JST['templates/edit_person'];
       var url = $(this).attr('href');
-      $(this).closest('div').parent().replaceWith(editForm);
+      var show = $(this).closest('div').parent();
+      $(show).replaceWith(editForm);
+
+      $('.actions').on('click', 'a', function (event) {
+        $(event.target).closest('div').parent().find("input[type=text]").val("");
+        $($(event.target).closest('div').parent()).replaceWith(show);
+      });
+
       $('form').submit(function (event) {
         var inputs = $(this).serializeArray();
         var formParams = {};
