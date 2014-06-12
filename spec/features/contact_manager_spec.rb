@@ -51,4 +51,13 @@ feature 'The one-page contact manager app', js: true do
     expect(page).to have_content 'Joe Example'
   end
 
+  scenario 'a user can delete a person' do
+    visit '/'
+    within '.person:first-child' do
+      click_on 'Edit'
+    end
+    click_on 'Delete'
+    expect(page).to_not have_content 'Joe Example'
+  end
+
 end

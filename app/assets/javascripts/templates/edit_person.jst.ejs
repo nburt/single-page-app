@@ -1,18 +1,21 @@
-<form action="#">
-  <div class="actions"><a href="#">Cancel</a></div>
+<form class="edit-form" action="<%= _links.self.href %>">
+  <div class="actions"><a href="#" class="delete-button">Delete</a></div>
+  <br>
+  <div class="actions"><a href="#" class="cancel-button">Cancel</a></div>
+
   <div class="form-row">
     <label class="form-label">First Name</label>
-    <input type="text" name="first_name" class="form-control">
+    <input type="text" name="first_name" class="form-control" value="<%= first_name %>">
   </div>
 
   <div class="form-row">
     <label class="form-label">Last Name</label>
-    <input type="text" name="last_name" class="form-control">
+    <input type="text" name="last_name" class="form-control" value="<%= last_name %>">
   </div>
 
   <div class="form-row">
     <label class="form-label">Address</label>
-    <input type="text" name="address" class="form-control">
+    <input type="text" name="address" class="form-control" value="<%= address %>">
   </div>
 
   <div class="form-row">
