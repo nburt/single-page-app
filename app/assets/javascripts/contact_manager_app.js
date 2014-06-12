@@ -26,13 +26,14 @@ window.ContactManagerApp = {
         dataType: "json",
         data: JSON.stringify(formParams)
       }).success(function (response) {
-        var div = JST['templates/display_people'](response);
+        var $div = $(JST['templates/display_people'](response));
         $('.create-form input[type=text]').val("");
-        $('[data-container=people]').append(div);
+        $div.data('person', response);
+        $('[data-container=people]').append($div);
       });
     });
 
-    $(document).on("click", ".edit-link", function (event) {
+    $(document).on("click", "a.edit-link", function (event) {
       event.preventDefault();
       var person = $(event.target).closest(".person").data('person');
       var $editForm = $(JST['templates/edit_person'](person));
@@ -72,14 +73,16 @@ window.ContactManagerApp = {
 
     $(document).on('click', '.delete-button', function (event) {
       event.preventDefault();
-      var person = $(event.target).closest('form').data('person');
-      var url = person._links.self.href;
-      $.ajax({
-        type: "DELETE",
-        url: url
-      }).success(function () {
-        $(event.target).closest('form').remove();
-      });
+      if (window.confirm('Are you sure?')) {
+        var person = $(event.target).closest('form').data('person');
+        var url = person._links.self.href;
+        $.ajax({
+          type: "DELETE",
+          url: url
+        }).success(function () {
+          $(event.target).closest('form').remove();
+        });
+      }
     });
   }
 };

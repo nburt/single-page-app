@@ -57,6 +57,13 @@ feature 'The one-page contact manager app', js: true do
       click_on 'Edit'
     end
     click_on 'Delete'
+    #expect(page).to have_content 'Are you sure?'
+    page.driver.browser.switch_to.alert.accept
+
+    #click_on 'cancel'
+    #expect(page).to have_content 'Joe Example'
+    #click_on 'Delete'
+    #click_on 'OK'
     expect(page).to_not have_content 'Joe Example'
   end
 
